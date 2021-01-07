@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+---
+spring:
+  cloud:
+    gateway:
+      default-filters: # 공통 필터
+        - name: GlobalFilter
+          args:
+            baseMessage: Spring Cloud Gateway GlobalFilter
+            preLogger: true
+            postLogger: true
+      routes: #client1-svc, client2-svc 총 두 개의 마이크로 서비스 라우팅
+        - id: client1-svc   #조건부에 따라서 http://localhost:8080/client1/ 이 호출된다면 http://localhost:8081/client1/ 서비스가 호출된다.
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/client1/**
+          filters: # 각 서비스 호출 전 호출되는 필터
+            - name: Client1Filter
+              args:
+                baseMessage: Spring Cloud Gateway Client1Filter
+                preLogger: true
+                postLogger: true
+        - id: client2-svc
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/client2/**
+          filters:
+            - name: Client2Filter
+              args:
+                baseMessage: Spring Cloud Gateway Client2Filter
+                preLogger: true
+                postLogger: true
+
+
+
