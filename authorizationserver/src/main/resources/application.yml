@@ -1,6 +1,6 @@
 # 인증 서버
 server:
-  port: 9090
+  port: 8090
 
 ###########
 security:
@@ -17,4 +17,17 @@ spring:
   h2:
     console:
       enabled: true
-      path: /h2-console
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/apigateway
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto:  create-drop #create 어플 실행시점에 자동 테이블 리셋모드
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect #hibernate.dialect' not set h2 에러 해결
+        # show_sql: true #sysout 용
+        format_sql: true
