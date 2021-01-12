@@ -1,7 +1,7 @@
 package com.msa.init;
 
-import com.msa.user.User;
 import com.msa.user.UserDto;
+import com.msa.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -17,11 +17,10 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
-    private final User user;
+    private final UserService userService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("user = " + user);
         UserDto newUser = new UserDto();
         PasswordEncoder passwordEncoder;
         passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -30,7 +29,6 @@ public class DataInitializer implements ApplicationRunner {
         newUser.setUserType(0);
         newUser.setDate(LocalDateTime.now());
 
-        user.CreateUser(newUser);
-
+        userService.createUser(newUser);
     }
 }

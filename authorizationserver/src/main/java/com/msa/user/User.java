@@ -1,6 +1,7 @@
 package com.msa.user;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +10,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Component
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
+@ToString
 public class User {
 
     @Id
@@ -26,8 +29,8 @@ public class User {
 
     private LocalDateTime date;
 
-    public void CreateUser(UserDto newUser) {
-        User user = User.builder()
+    public User createUser(UserDto newUser) {
+        return User.builder()
                 .userName(newUser.getUserName())
                 .password(newUser.getPassword())
                 .userType(newUser.getUserType())

@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
+    private final User user;
     private final UserRepository userRepository;
 
     @Override
@@ -53,5 +54,11 @@ public class UserService implements UserDetailsService {
         userInfo.setAuthorities(authorityList);
 
         return userInfo;
+    }
+
+    public void createUser(UserDto newUser) {
+        User createUser = this.user.createUser(newUser);
+        System.out.println("createUser = " + createUser.toString());
+        userRepository.save(createUser);
     }
 }
