@@ -10,24 +10,24 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @Component
-public class GlobalFilter extends AbstractGatewayFilterFactory<GlobalFilter.ConfigField> {
+public class CommonFilter extends AbstractGatewayFilterFactory<CommonFilter.ConfigField> {
 
-    public GlobalFilter(){
+    public CommonFilter(){
         super(ConfigField.class);
     }
 
     @Override
     public GatewayFilter apply(ConfigField configField) {
         return ((exchange, chain) -> {
-            log.info("GlobalFilter :"+ configField.toString());
-            log.info("GlobalFilter Message : "+ configField.getBaseMessage());
+            log.info("CommonFilter :"+ configField.toString());
+            log.info("CommonFilter Message : "+ configField.getBaseMessage());
 
             if (configField.isPreLogger()){
-                log.info("GlobalFilter START : " + exchange.getRequest());
+                log.info("CommonFilter START : " + exchange.getRequest());
             }
             return chain.filter(exchange).then(Mono.fromRunnable(() ->{
                 if (configField.isPostLogger()){
-                    log.info("GlobalFilter END : " + exchange.getResponse());
+                    log.info("CommonFilter END : " + exchange.getResponse());
                 }
             }));
         });
