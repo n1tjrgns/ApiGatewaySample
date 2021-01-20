@@ -89,6 +89,12 @@ project(':apigatewayserver'){
     }
 }
 
+project(':oauthconfig'){
+    dependencies {
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.5.RELEASE'
+        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-oauth2', version: '2.2.4.RELEASE'
+    }
+}
 
 test {
     useJUnitPlatform()

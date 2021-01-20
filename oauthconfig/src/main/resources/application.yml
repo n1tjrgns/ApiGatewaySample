@@ -1,0 +1,14 @@
+# 인증 서버
+server:
+  port: 8091
+
+###########
+security:
+  oauth2:
+    client: #보통 OAuth2 인증을 지원하는 웹 사이트에서는 클라이언트 계정을 발급해줘 그 정보를 입력해야함, 여기서는 예제라서 임의로 하드코틷ㅇ
+      client-id: n1tjrgns # client를 식별하는 고유 id
+      client-secret: tistory # access token을 교환하기 위한 암호
+
+    resource:
+      jwt:
+        key-value: jwt_secret_key
