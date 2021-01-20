@@ -21,7 +21,7 @@ repositories {
 //전체에 적용하고 싶다면 allprojects를 사용하면 된다.
 //내부 모듈에만 적용하고 싶다면 subprojects
 //allprojects와 subprojects에는 plugins를 쓸 수 없어 apply plugin을 사용해야 한다.
-allprojects {
+subprojects {
     apply plugin : 'java'
     apply plugin : 'org.springframework.boot'
     apply plugin : 'io.spring.dependency-management'
@@ -37,11 +37,11 @@ allprojects {
     dependencies {
         //compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.5.RELEASE'
         //spring cloud gateway를 위한 라이브러리
-        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: '2.2.5.RELEASE'
+        //compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: '2.2.5.RELEASE'
 
         // netflix에서 Circuit Breaker Pattern을 구현한 라이브러리리, 하지만 더 이상 추가기능 제공되지 않고 유지보수만 한다고함
         // 최근에는 resilience4j를 사용
-        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.2.5.RELEASE'
+        //compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.2.5.RELEASE'
         //compile group: 'io.github.resilience4j', name: 'resilience4j-circuitbreaker', version: '1.6.1'
         /*compile("org.springframework.cloud:spring-cloud-starter-contract-stub-runner"){
               exclude group: "org.springframework.boot", module: "spring-boot-starter-web"
@@ -57,14 +57,16 @@ allprojects {
 
 project(':client1'){
     dependencies {
-        compileOnly 'org.projectlombok:lombok'
+        //compileOnly 'org.projectlombok:lombok'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.5.RELEASE'
         compile group: 'io.projectreactor', name: 'reactor-core', version: '3.3.12.RELEASE'
     }
 }
 
 project(':authorizationserver'){
     dependencies {
-        compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.2.5.RELEASE'
+        //compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.2.5.RELEASE'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.5.RELEASE'
         compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-oauth2', version: '2.2.4.RELEASE'
         compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-security', version: '2.2.4.RELEASE'
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -78,6 +80,13 @@ project(':authorizationserver'){
         compile.exclude group: 'spring-boot-starter-web'
         compile.exclude group: 'spring-cloud-starter-gateway'
     }*/
+}
+
+project(':apigatewayserver'){
+    dependencies {
+        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: '2.2.5.RELEASE'
+        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.2.5.RELEASE'
+    }
 }
 
 

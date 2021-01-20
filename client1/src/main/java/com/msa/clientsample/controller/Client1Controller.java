@@ -27,7 +27,7 @@ public class Client1Controller {
         ResponseCookie.ResponseCookieBuilder builder = ResponseCookie.from("client1","client1CookieValue");
         ResponseCookie cookie = builder.build();
         response.addCookie(cookie);
-        Mono<String> data = Mono.just("Hello from Reactive getData Method");
+        Mono<String> data = Mono.just("Hello n1tjrgns, welcome to MSA");
         return data;
     }
 }
