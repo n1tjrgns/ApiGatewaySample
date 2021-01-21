@@ -59,6 +59,7 @@ project(':client1'){
     dependencies {
         //compileOnly 'org.projectlombok:lombok'
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.5.RELEASE'
+        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-oauth2', version: '2.2.4.RELEASE'
         compile group: 'io.projectreactor', name: 'reactor-core', version: '3.3.12.RELEASE'
     }
 }
@@ -86,13 +87,6 @@ project(':apigatewayserver'){
     dependencies {
         compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: '2.2.5.RELEASE'
         compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.2.5.RELEASE'
-    }
-}
-
-project(':oauthconfig'){
-    dependencies {
-        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.5.RELEASE'
-        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-oauth2', version: '2.2.4.RELEASE'
     }
 }
 

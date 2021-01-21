@@ -2,5 +2,3 @@ rootProject.name = 'apigatewaysample'
 include 'client1'
 include 'authorizationserver'
 include 'apigatewayserver'
-include 'oauthconfig'
-
